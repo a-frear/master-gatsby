@@ -5,7 +5,7 @@ export default function ItemGrid({ items }) {
   return (
     <ItemsGrid>
       {items.map((item) => (
-        <ItemStyles>
+        <ItemStyles key={`loader-${item}`}>
           <p>
             <span className="mark">{item.name}</span>
           </p>
