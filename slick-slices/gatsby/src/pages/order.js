@@ -1,15 +1,42 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import styled from 'styled-components';
 import SEO from '../components/SEO';
 import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
-import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
 import usePizza from '../utils/usePizza';
 import PizzaOrder from '../components/PizzaOrder';
 import calculateOrderTotal from '../utils/calculateOrderTotal';
+
+const OrderStyles = styled.form`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  fieldset {
+    grid-column: span 2;
+    max-height: 600px;
+    overflow: auto;
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    &.order,
+    &.menu {
+      grid-column: span 1;
+    }
+  }
+  .mapleSyrup {
+    display: none;
+  }
+  /* @media (max-width: 900px) {
+    fieldset.menu,
+    fieldset.order {
+      grid-column: span 2;
+    }
+  } */
+`;
 
 export default function OrderPage({ data }) {
   const pizzas = data.pizzas.nodes;
